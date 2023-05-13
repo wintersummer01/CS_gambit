@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title>청송갬빗 참가자 명단 기록</title>
+		<!--output.setTitle(g_title);-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--output.addMetaTag("viewport", "width=device-width, initial-scale=1");-->
+
+		<style>
+			@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+			*{
+				font-family:Nanum Gothic;
+				font-size:20px;
+				text-align:center
+			}
+			body,html{
+				height:100%
+			}
+			body{
+				display:table;
+				height:100%;
+				margin:0 auto;
+				width:100%
+			}
+			.container{
+				background:rgba(0,0,0,.05);
+				display:table-cell;
+				vertical-align:middle;
+				width:100%
+			}
+			.center{
+				background:rgba(255,255,255);
+				border-radius:10px;
+				box-shadow:0 5px 50px 0 rgba(0,0,0,.4);
+				display:inline-block;
+				position:relative;
+				width:500px
+			}
+			input{
+				border:1px solid;
+				border-radius:3px;
+				height:36px;
+				width:89%
+			}
+                .short{
+                    font-size: 18px;
+                    width:20%;
+                }
+			button{
+				background-color:#4caf50;
+				border:none;
+				border-radius:3px;
+				color:#fff;
+				cursor:pointer;
+				height:40px;
+				width:90%;
+			}
+                .shortbtn{
+                    background-color:#578ac1;
+                    width:38%;
+                    margin-right: 20px
+                }
+                .shortrst{
+                    background-color:#424242;
+                    width:24%;
+                }
+			button:hover{
+				background:#4ca050
+			}
+            button.shortbtn:hover{
+                background:#3d628a
+            }
+            button.shortrst:hover{
+                background:#2c2c2c
+            }
+			.text{
+				font-size:10px
+			}
+      .link{
+        color: "#000000";
+		text-decoration:none;
+        font-size:15px;
+      }
+      a.link:hover{
+        color: "#0000ff";
+      }
+      
+			@media screen and (max-width:640px){
+				.center{
+					width:62.5%
+				}
+			}
+		</style>
+	</head>
+
+<body>
+<div class="container">
+	<div class="center">
+		<div style="margin: 15px"></div>
+		<div id="title"></div>
+		<div style="margin: 20px"></div>
+		<input type="text" id="input_name" autofocus></input>
+		<div style="margin: 15px"></div>
+		<input type="text" id="input_number" autofocus></input>
+		<div style="margin: 15px"></div>
+		<button id="btn_write"></button>
+		<div style="margin: 20px"></div>
+        <hr width="80%"></hr>
+		<div style="margin: 20px"></div>
+		<input class="short" id="input_team_num" float:left></input>
+		<button class="shortbtn" id="btn_start" float:left></button>
+		<button class="shortrst" id="btn_reset" float:right></button>
+		<div style="margin: 15px"></div>
+		<a class="link" color="#000000" id="link" href="https://docs.google.com/spreadsheets/d/1GX-s2IhpluEFXmARHfXc44My7Jo51S35pAzOniAdqY4/edit#gid=0"> </a>
+		<div style="margin: 10px"></div>
+		<div class="text" id="me"></div>
+		<div style="margin: 10px"></div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+// ==========
+var g_name        = "청송갬빗 참가자 명단 기록";
+var g_text        = "Made by 최동하 RA";
+var g_validity    = "값이 올바르지 않습니다.";
+// ==========
+function writeValue(name, number) {
+	if (name == "") {
+		alert("이름을 입력해주세요.");
+		return;
+	}
+	if (number == "") {
+		alert("학번을 입력해주세요.");
+		return;
+	}
+  num_val = parseInt($("#input_number").val())
+	if (isNaN(num_val)) {
+		alert("학번은 숫자로 입력해주세요!");
+		return;
+	}
+	if (num_val < 2018001001 || num_val > 2024001001) {
+		alert("학번이 좀 이상한데요...? 다시 확인해주세요!");
+		return;
+	}
+
+	// try {
+	// 	function onSuccess(result) {
+	// 		alert(result);
+	// 	}
+    // google.script.run.withSuccessHandler(onSuccess).writeSpreadSheet(name, num_val);
+	// } catch (e) {
+	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
+	// }
+
+    alert("Write Value!")
+}
+
+function startRandom() {
+  num_val = parseInt($("#input_team_num").val())
+	if (isNaN(num_val)) {
+		alert("팀당 인원수는 숫자로 입력해주세요!");
+		return;
+	}
+  if(confirm("팀 당 "+ num_val +"명으로 팀을 구성합니다") == false) {
+    return;
+  }
+
+	// try {
+	// 	function onSuccess(result) {
+	// 		alert(result);
+	// 	}
+    // google.script.run.withSuccessHandler(onSuccess).randomTeam(num_val);
+	// } catch (e) {
+	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
+	// }
+    alert("Random Start!")
+}
+
+function resetSheet() {
+  if(confirm("진짜 스프레드시트 정보를 리셋할까요?") == false) {
+    return;
+  }
+
+	// try {
+	// 	function onSuccess(result) {
+	// 		alert(result);
+	// 	}
+    // google.script.run.withSuccessHandler(onSuccess).resetSpreadSheet();
+	// } catch (e) {
+	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
+	// }
+    alert("reset Sheet!")
+}
+
+$("#title").text(g_name);
+$("#input_name").attr("placeholder", "이름").val("").focus().blur();
+$("#input_number").attr("placeholder", "학번").val("").focus().blur();
+$("#input_team_num").attr("placeholder", "팀당 인원").val("").focus().blur();
+$("#btn_write").text("입력");
+$("#btn_start").text("팀 짜기");
+$("#btn_reset").text("시트 리셋");
+$("#me").text(g_text);
+$("#link").text("< 스프레드시트로 이동 (클릭!) >");
+
+$("#btn_write").click(function(){writeValue(input_name.value, input_number.value);});
+$("#btn_start").click(function(){startRandom();});
+$("#btn_reset").click(function(){resetSheet();});
+$("#input_name").keydown(
+	function (key) {
+		if (key.keyCode === 13) {
+			$("#btn_write").click();
+			event.preventDefault();
+		}
+	}
+);
+$("#input_number").keydown(
+	function (key) {
+		if (key.keyCode === 13) {
+			$("#btn_write").click();
+			event.preventDefault();
+		}
+	}
+);
+$("#input_team_num").keydown(
+	function (key) {
+		if (key.keyCode === 13) {
+			$("#btn_start").click();
+			event.preventDefault();
+		}
+	}
+);
+</script>
+</body>
+</html>

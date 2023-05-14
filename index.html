@@ -37,6 +37,14 @@
 				position:relative;
 				width:500px
 			}
+			.center_{
+				background:rgba(255,255,255);
+				border-radius:10px;
+				box-shadow:0 5px 50px 0 rgba(0,0,0,.4);
+				display:inline-block;
+				position:relative;
+				padding:3px;
+			}
 			input{
 				border:1px solid;
 				border-radius:3px;
@@ -77,21 +85,37 @@
 			.text{
 				font-size:10px
 			}
-      .link{
-        color: "#000000";
-		text-decoration:none;
-        font-size:15px;
-      }
-      a.link:hover{
-        color: "#0000ff";
-      }
-      
-			@media screen and (max-width:640px){
-				.center{
-					width:62.5%
-				}
-			}
+        .link{
+            color: "#000000";
+            text-decoration:none;
+            font-size:15px;
+        }
+        a.link:hover{
+            color: "#0000ff";
+        }
+        table{
+            border: 1px solid #444444;
+            border-collapse: collapse;
+			margin: 15px;
+			float: left;
+        }
+        thead{
+            background-color: #ececec;
+        }
+        th, td{
+            font-size: 18px;
+            border: 1px solid #444444;
+            padding: 5px;
+        }
+        @media screen and (max-width:640px){
+            .center{
+                width:62.5%
+            }
+        }
 		</style>
+
+
+    <script src="./code.js"></script>
 	</head>
 
 <body>
@@ -112,97 +136,42 @@
 		<button class="shortbtn" id="btn_start" float:left></button>
 		<button class="shortrst" id="btn_reset" float:right></button>
 		<div style="margin: 15px"></div>
-		<a class="link" color="#000000" id="link" href="https://docs.google.com/spreadsheets/d/1GX-s2IhpluEFXmARHfXc44My7Jo51S35pAzOniAdqY4/edit#gid=0"> </a>
-		<div style="margin: 10px"></div>
 		<div class="text" id="me"></div>
 		<div style="margin: 10px"></div>
 	</div>
+    <div style="margin: 70px"></div>
+	<div class="center_" id="table_cwnter">
+        <table class="table" id="student_data">
+            <thead>
+                <tr>
+                <th scope="col">이름</th>
+                <th scope="col">학번</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>최동하</td>
+                  <td>2020193004</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" id="team_data">
+        </table>
+	</div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-// ==========
-var g_name        = "청송갬빗 참가자 명단 기록";
-var g_text        = "Made by 최동하 RA";
-var g_validity    = "값이 올바르지 않습니다.";
-// ==========
-function writeValue(name, number) {
-	if (name == "") {
-		alert("이름을 입력해주세요.");
-		return;
-	}
-	if (number == "") {
-		alert("학번을 입력해주세요.");
-		return;
-	}
-  num_val = parseInt($("#input_number").val())
-	if (isNaN(num_val)) {
-		alert("학번은 숫자로 입력해주세요!");
-		return;
-	}
-	if (num_val < 2018001001 || num_val > 2024001001) {
-		alert("학번이 좀 이상한데요...? 다시 확인해주세요!");
-		return;
-	}
 
-	// try {
-	// 	function onSuccess(result) {
-	// 		alert(result);
-	// 	}
-    // google.script.run.withSuccessHandler(onSuccess).writeSpreadSheet(name, num_val);
-	// } catch (e) {
-	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
-	// }
-
-    alert("Write Value!")
-}
-
-function startRandom() {
-  num_val = parseInt($("#input_team_num").val())
-	if (isNaN(num_val)) {
-		alert("팀당 인원수는 숫자로 입력해주세요!");
-		return;
-	}
-  if(confirm("팀 당 "+ num_val +"명으로 팀을 구성합니다") == false) {
-    return;
-  }
-
-	// try {
-	// 	function onSuccess(result) {
-	// 		alert(result);
-	// 	}
-    // google.script.run.withSuccessHandler(onSuccess).randomTeam(num_val);
-	// } catch (e) {
-	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
-	// }
-    alert("Random Start!")
-}
-
-function resetSheet() {
-  if(confirm("진짜 스프레드시트 정보를 리셋할까요?") == false) {
-    return;
-  }
-
-	// try {
-	// 	function onSuccess(result) {
-	// 		alert(result);
-	// 	}
-    // google.script.run.withSuccessHandler(onSuccess).resetSpreadSheet();
-	// } catch (e) {
-	// 	alert("Google Script에 업로드 후 실행해야 합니다.");
-	// }
-    alert("reset Sheet!")
-}
-
-$("#title").text(g_name);
+$("#title").text("청송갬빗 참가자 명단 기록");
 $("#input_name").attr("placeholder", "이름").val("").focus().blur();
 $("#input_number").attr("placeholder", "학번").val("").focus().blur();
 $("#input_team_num").attr("placeholder", "팀당 인원").val("").focus().blur();
 $("#btn_write").text("입력");
 $("#btn_start").text("팀 짜기");
 $("#btn_reset").text("시트 리셋");
-$("#me").text(g_text);
-$("#link").text("< 스프레드시트로 이동 (클릭!) >");
+$("#me").text("Made by 최동하 RA");
 
 $("#btn_write").click(function(){writeValue(input_name.value, input_number.value);});
 $("#btn_start").click(function(){startRandom();});

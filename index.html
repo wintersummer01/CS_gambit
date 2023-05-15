@@ -35,15 +35,6 @@
 				box-shadow:0 5px 50px 0 rgba(0,0,0,.4);
 				display:inline-block;
 				position:relative;
-				width:500px
-			}
-			.center_{
-				background:rgba(255,255,255);
-				border-radius:10px;
-				box-shadow:0 5px 50px 0 rgba(0,0,0,.4);
-				display:inline-block;
-				position:relative;
-				padding:3px;
 			}
 			input{
 				border:1px solid;
@@ -85,34 +76,25 @@
 			.text{
 				font-size:10px
 			}
-        .link{
-            color: "#000000";
-            text-decoration:none;
-            font-size:15px;
-        }
-        a.link:hover{
-            color: "#0000ff";
-        }
-        table{
-            border: 1px solid #444444;
-            border-collapse: collapse;
-			margin: 15px;
-			float: left;
-        }
-        thead{
-            background-color: #ececec;
-        }
-        th, td{
-            font-size: 18px;
-            border: 1px solid #444444;
-            padding: 5px;
-        }
-        @media screen and (max-width:640px){
-            .center{
-                width:62.5%
-            }
-        }
-		</style>
+			table{
+				border: 1px solid #444444;
+				border-collapse: collapse;
+				float: left;
+			}
+			thead{
+				background-color: #ececec;
+			}
+			th, td{
+				font-size: 18px;
+				border: 1px solid #444444;
+				padding: 5px;
+			}
+			@media screen and (max-width:640px){
+				.center{
+					width:62.5%
+				}
+			}
+			</style>
 
 
     <script src="./code.js"></script>
@@ -120,7 +102,7 @@
 
 <body>
 <div class="container">
-	<div class="center">
+	<div class="center" style="width: 500px">
 		<div style="margin: 15px"></div>
 		<div id="title"></div>
 		<div style="margin: 20px"></div>
@@ -140,7 +122,7 @@
 		<div style="margin: 10px"></div>
 	</div>
     <div style="margin: 70px"></div>
-	<div class="center_" id="table_cwnter">
+	<div class="center" id="table_center" style="padding: 15px">
         <table class="table" id="student_data">
             <thead>
                 <tr>

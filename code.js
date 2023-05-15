@@ -47,9 +47,9 @@ function writeValue(name, number) {
 }
    
 function startRandom() {
-    // const body = document.getElementById("table_center")
     
     const table = document.getElementById('team_data');
+    table.style.marginLeft = "20px";
     
     const newRow = table.insertRow();
     const newCell1 = newRow.insertCell(0);
